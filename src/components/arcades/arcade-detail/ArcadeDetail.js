@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ArcadeDetailInfo } from './ArcadeDetailInfo';
+import { ArcadeMap } from './ArcadeMap';
+
 import * as actions from 'actions'
 
 class ArcadeDetail extends React.Component {
@@ -13,14 +16,28 @@ class ArcadeDetail extends React.Component {
 	render() {
 		const arcade = this.props.arcade;
 
-		if (arcade.id) {
+		if (arcade._id) {
 			return (
-			<div>
-				<h1>{arcade.title}</h1>
-				<h1>{arcade.city}</h1>
-				<h1>{arcade.description}</h1>
-				<h1>{arcade.dailyRate}$</h1>
-			</div>
+				<section id='arcadeDetails'>
+				  <div className='upper-section'>
+				    <div className='row'>
+				      <div className='col-md-6'>
+				        <img src={arcade.image} alt=''></img>
+				      </div>
+				      <div className='col-md-6'>
+				       <ArcadeMap location={`${arcade.city}, ${arcade.street}`} />
+				      </div>
+				    </div>
+				  </div>
+				  <div className='details-section'>
+				    <div className='row'>
+				      <div className='col-md-8'>
+				       <ArcadeDetailInfo arcade={arcade} />
+				      </div>
+				      <div className='col-md-4'> BOOKING</div>
+				    </div>
+				  </div>
+				</section>
 			)
 		} else {
 			return (
