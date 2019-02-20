@@ -3,7 +3,6 @@ import { ArcadeList } from './ArcadeList';
 import { connect } from 'react-redux'
 import * as actions from 'actions'
 
-
 class ArcadeListing extends React.Component {
 
 	componentWillMount() {

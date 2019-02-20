@@ -1,6 +1,6 @@
-import { FETCH_ARCADES, 
-		FETCH_ARCADE_BY_ID_SUCCESS,
-			FETCH_ARCADE_BY_ID_INIT } from '../actions/types';
+import {	FETCH_ARCADE_BY_ID_SUCCESS,
+			FETCH_ARCADE_BY_ID_INIT,
+			FETCH_ARCADES_SUCCESS } from '../actions/types';
 
 const INITIAL_STATE = {
 	arcades: {
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 
 export const arcadeReducer = (state = INITIAL_STATE.arcades, action) => {
 		switch(action.type) {
-			case FETCH_ARCADES:
+			case FETCH_ARCADES_SUCCESS:
 				return {...state, data: action.arcades}
 			default:
 				return state;
