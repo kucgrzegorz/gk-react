@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Arcade = require('../models/arcade');
 
+const UserCtrl = require('../controlers/user');
+
+router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
+	res.json({"secret": true});
+});
+
 router.get('', function(req, res) {
 	Arcade.find({}, function(err, foundArcades) {
 
