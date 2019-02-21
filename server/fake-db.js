@@ -1,4 +1,5 @@
 const Arcade = require('./models/arcade');
+const User = require('./models/user');
 
 class FakeDb {
 
@@ -35,24 +36,38 @@ class FakeDb {
                   shared: true,
                   description: "Very nice apartment in center of the city.",
                   dailyRate: 23
-}]
+            }];
+                  
+            this.users = [{
+                  username: "Test User",
+                  email: "test@gmail.com",
+                  password: "testtest"
+            }];
+
 	}
 
 	async cleanDb() {
+            await User.deleteMany({});
 		await Arcade.deleteMany({});
 	}
 
-	pushArcadesToDb() {
+	pushDataToDb() {
+            const user = new User(this.users[0]);
+
 		this.arcades.forEach((arcade) => {
 			const newArcade = new Arcade(arcade);
+                  newArcade.user = user;
 
+                  user.arcades.push(newArcade);
 			newArcade.save();
-		})
+		});
+
+            user.save();
 	}
 
-	seedDb() {
-		this.cleanDb();
-		this.pushArcadesToDb();
+      async	seedDb() {
+		await this.cleanDb();
+		this.pushDataToDb();
 		}
 	}
 
