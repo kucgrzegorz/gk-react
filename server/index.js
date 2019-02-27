@@ -9,7 +9,7 @@ const arcadeRoutes = require('./routes/arcades'),
 
 mongoose.connect('mongodb+srv://Test00:test99@gk-react-dev-gytq3.mongodb.net/test?retryWrites=true', { useNewUrlParser: true}).then(() => {
 	const fakeDb = new FakeDb();
-	fakeDb.seedDb();
+	// fakeDb.seedDb();
 });
 
 const app = express();
