@@ -1,8 +1,15 @@
 @import 'variables.scss';
 @import 'header/header.scss';
+@import 'form/form.scss';
 
 @import 'arcades/arcades-listing.scss';
 @import 'arcades/arcade-detail.scss';
+
+.clickable {
+	&:hover {
+		cursor: pointer;
+	}
+}
 
 .page-title {
 
@@ -24,4 +31,18 @@
 .cinema {
 	color: #000000;
 
+
+}
+
+.btn-bwm {
+	background-color: $dark-blue-color;
+	border-color: $dark-blue-color;
+	color: white;
+	padding: 15px 30px;
+	font-size: 20px;
+
+	&:hover, &:focus, &:active {
+		border-color: $dark-blue-color !important;
+		background-color: $dark-blue-color !important;
+	}
 }
