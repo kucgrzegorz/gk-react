@@ -13,7 +13,8 @@ const arcadeSchema = new Schema({
 	description: { type: String, required: true},
 	dailyRate: Number,
 	createdAt: { type: Date, default: Date.now },
-	user: [{type: Schema.Types.ObjectId, ref: 'user'}]
+	user: [{type: Schema.Types.ObjectId, ref: 'user'}],
+	bookings: [{ type: Schema.Types.ObjectId, ref: 'Booking'}]
 });
 
 module.exports = mongoose.model('Arcade', arcadeSchema );

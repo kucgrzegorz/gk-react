@@ -28,7 +28,7 @@ export class Register extends React.Component {
 		const { errors, redirect } = this.state;
 
 		if (redirect) {
-			return <Redirect to={{pathname: '/login', state: { succesRegister: true }}} />
+			return <Redirect to={{pathname: '/login', state: { successRegister: true }}} />
 		}
 
 		return (
