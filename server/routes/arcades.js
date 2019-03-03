@@ -9,7 +9,9 @@ router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
 });
 
 router.get('', function(req, res) {
-	Arcade.find({}, function(err, foundArcades) {
+	Arcade.find({})
+		.select('-bookings')
+		.exec(function(err, foundArcades) {
 
 		res.json(foundArcades);
 	});
@@ -18,13 +20,16 @@ router.get('', function(req, res) {
 router.get('/:id', function(req, res) {
 	const arcadeId = req.params.id;
 
-	Arcade.findById(arcadeId, function(err, foundArcade) {
-		if (err) {
-
-			res.status(422).send({errors: [{title: 'Arcade Error!', detail: 'Could not find Arcade!'}]});
+	Arcade.findById(arcadeId)
+		.populate('user', 'username -_id')
+		.populate('bookings', 'startAt endAt -_id')
+		.exec(function(err, foundArcade) {
+		
+			if (err) {
+				return res.status(422).send({errors: [{title: 'Arcade Error!', detail: 'Could not find Arcade!'}]});
 		}
 
-		res.json(foundArcade);
+		return res.json(foundArcade);
 	});
 });
 
