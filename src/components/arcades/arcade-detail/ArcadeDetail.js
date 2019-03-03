@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ArcadeDetailInfo } from './ArcadeDetailInfo';
 import { ArcadeMap } from './ArcadeMap';
+import { Booking } from 'components/booking/Booking';
 
 import * as actions from 'actions'
 
@@ -34,7 +35,9 @@ class ArcadeDetail extends React.Component {
 				      <div className='col-md-8'>
 				       <ArcadeDetailInfo arcade={arcade} />
 				      </div>
-				      <div className='col-md-4'> BOOKING</div>
+				      <div className='col-md-4'> 
+				      <Booking arcade={arcade} />
+				      </div>
 				    </div>
 				  </div>
 				</section>
