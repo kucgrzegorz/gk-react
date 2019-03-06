@@ -10,6 +10,22 @@ router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
 	res.json({"secret": true});
 });
 
+router.get('/manage', UserCtrl.authMiddleware, function(req,res) {
+	const user = res.locals.user;
+
+	Arcade
+	.where({user})
+	.populate('bookings')
+	.exec(function(err, foundArcades){
+
+		if (err) {
+			return res.status(422).send({errors: normalizeErrors(err.errors)});
+		}
+
+		return res.json(foundArcades);
+	});
+});
+
 router.get('/:id', function(req, res) {
 	const arcadeId = req.params.id;
 
@@ -23,6 +39,41 @@ router.get('/:id', function(req, res) {
 		}
 
 		return res.json(foundArcade);
+	});
+});
+
+router.delete('/:id', UserCtrl.authMiddleware, function(req, res) {
+	const user = res.locals.user;
+
+	Arcade
+	.findById(req.params.id)
+	.populate('user', '_id')
+	.populate({
+		path: 'bookings',
+		select: 'startAt',
+		match: { startAt: { $gt: new Date()}}
+	})
+	.exec(function(err, foundArcade) {
+
+		if (err) {
+			return res.status(422).send({errors: normalizeErrors(err.errors)});
+		}
+
+		if (user.id !== foundArcade.user.id) {
+			return res.status(422).send({errors: [{title: 'Nieprawidłowy użytkownik!', detail: 'Nie jesteś właścicielem salonu!'}]});
+		}
+
+		if (foundArcade.bookings.length > 0) {
+			return res.status(422).send({errors: [{title: 'Rezerwacje w tym obiekcie są aktywne!', detail: 'Nie można usunąć salonu z aktywnymi rezerwacjami!'}]});
+		}
+
+		foundArcade.remove(function(err) {
+			if (err) {
+				return res.status(422).send({errors: normalizeErrors(err.errors)});
+			}
+
+			return res.json({'status': 'deleted'});
+		});
 	});
 });
 
