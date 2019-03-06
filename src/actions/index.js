@@ -5,6 +5,8 @@ import axiosService from 'services/axios-service';
 import {FETCH_ARCADE_BY_ID_SUCCESS, 
         FETCH_ARCADE_BY_ID_INIT,
         FETCH_ARCADES_SUCCESS, 
+        FETCH_ARCADES_INIT,
+        FETCH_ARCADES_FAIL,
         LOGIN_SUCCESS, 
         LOGIN_FAILURE,
         LOGOUT } from './types';
@@ -28,6 +30,19 @@ const fetchArcadeByIdSuccess = (arcade) => {
     }
 }
 
+const fetchArcadesInit = () => {
+    return {
+        type: FETCH_ARCADES_INIT
+    }
+}
+
+const fetchArcadesFail = (errors) => {
+    return {
+        type: FETCH_ARCADES_FAIL,
+        errors
+    }
+}
+
 const fetchArcadesSuccess = (arcades) => {
     return {
         type: FETCH_ARCADES_SUCCESS,
@@ -35,12 +50,16 @@ const fetchArcadesSuccess = (arcades) => {
     }
 }
 
-export const fetchArcades = () => {
+export const fetchArcades = (city) => {
+    const url = city ? `/arcades?city=${city}` : '/arcades';
+
     return dispatch => {
-        axiosInstance.get('/arcades')
+        dispatch(fetchArcadesInit());
+
+            axiosInstance.get(url)
         .then(res => res.data )
-        .then(arcades => dispatch(fetchArcadesSuccess(arcades))
-        );
+        .then(arcades => dispatch(fetchArcadesSuccess(arcades)))
+        .catch(({response}) => dispatch(fetchArcadesFail(response.data.errors)))
     }
 }
 	
@@ -55,7 +74,14 @@ export const fetchArcadeById = (arcadeId) => {
     }
 }
 
-// AUTH ACTIONS --------------------------
+export const createArcade = (arcadeData) => {
+    return axiosInstance.post('/arcades', arcadeData).then(
+        res => res.data,
+        err => Promise.reject(err.response.data.errors)
+    )
+}
+
+// AUTH ACTIONS -------------------------- akcje typu tworzenie salonu
 export const register = (userData) => {
     return axios.post('/api/v1/users/register', userData).then(
         res => res.data,
@@ -64,8 +90,11 @@ export const register = (userData) => {
 }
 
 const loginSuccess = () => {
+    const username = authService.getUsername();
+
     return {
         type: LOGIN_SUCCESS,
+        username
      }
 }
 

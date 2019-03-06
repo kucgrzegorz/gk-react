@@ -20,3 +20,5 @@ export const getRangeOfDates = (startAt, endAt, dateFormat = 'Y/MM/DD') => {
 
 	return tempDates;
 }
+
+//funkcje pomocnicze, np toUpperCase (do zmiany liter na wielkie)
