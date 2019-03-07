@@ -11,6 +11,9 @@ import { ArcadeCreate } from './components/arcades/arcade-create/ArcadeCreate';
 import Login from 'components/login/Login';
 import { Register } from 'components/register/Register';
 
+import { ArcadeManage } from 'components/arcades/arcade-manage/ArcadeManage';
+import BookingManage from 'components/booking/booking-manage/BookingManage';
+
 import { ProtectedRoute } from 'shared/auth/ProtectedRoute';
 import { LoggedInRoute } from 'shared/auth/LoggedInRoute';
 
@@ -22,7 +25,7 @@ const store = require('./reducers').init();
 
 class App extends Component {
 
-  componentWillMount() {
+  componentWillMount() { 
     this.checkAuthState();
   }
 
@@ -33,7 +36,7 @@ class App extends Component {
   logout() {
     store.dispatch(actions.logout());
   }
-
+// specified paths
   render() {
       return (
       <Provider store={store}>
@@ -45,10 +48,12 @@ class App extends Component {
           <Route exact path='/' render={() => <Redirect to='/arcades' /> }/>
       	  <Route exact path='/arcades' component={ArcadeListing} />
           <Route exact path='/arcades/:city/homes' component={ArcadeSearchListing} />
+          <ProtectedRoute exact path='/arcades/manage' component={ArcadeManage} />
+          <ProtectedRoute exact path='/bookings/manage' component={BookingManage} />
           <ProtectedRoute exact path='/arcades/new' component={ArcadeCreate} />
-      	  <ProtectedRoute exact path='/arcades/:id' component={ArcadeDetail} />
+      	  <Route exact path='/arcades/:id' component={ArcadeDetail} />
           <Route exact path='/login' component={Login} />
-          <LoggedInRoute exact path='/register' component={Register} />
+          <LoggedInRoute exact path='/register' component={Register} /> 
         </Switch>
 		</div>
       </div>

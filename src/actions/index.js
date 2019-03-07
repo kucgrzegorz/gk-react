@@ -9,7 +9,10 @@ import {FETCH_ARCADE_BY_ID_SUCCESS,
         FETCH_ARCADES_FAIL,
         LOGIN_SUCCESS, 
         LOGIN_FAILURE,
-        LOGOUT } from './types';
+        LOGOUT,
+        FETCH_USER_BOOKINGS_SUCCESS,
+        FETCH_USER_BOOKINGS_FAIL,
+        FETCH_USER_BOOKINGS_INIT } from './types';
 
 // ARCADES ACTIONS -------------
 
@@ -56,7 +59,7 @@ export const fetchArcades = (city) => {
     return dispatch => {
         dispatch(fetchArcadesInit());
 
-            axiosInstance.get(url)
+      axiosInstance.get(url)
         .then(res => res.data )
         .then(arcades => dispatch(fetchArcadesSuccess(arcades)))
         .catch(({response}) => dispatch(fetchArcadesFail(response.data.errors)))
@@ -79,6 +82,55 @@ export const createArcade = (arcadeData) => {
         res => res.data,
         err => Promise.reject(err.response.data.errors)
     )
+}
+
+// USER BOOKINGS ACTIONS -------------------------------------
+
+const fetchUserBookingsInit = () => {
+    return {
+        type: FETCH_USER_BOOKINGS_INIT
+    }
+}
+
+const fetchUserBookingsSuccess = (userBookings) => {
+    return {
+        type: FETCH_USER_BOOKINGS_SUCCESS,
+        userBookings
+    }
+}
+
+const fetchUserBookingsFail = (errors) => {
+    return {
+        type: FETCH_USER_BOOKINGS_FAIL,
+        errors
+    }
+}
+
+export const fetchUserBookings = () => {
+    return dispatch => {
+        dispatch(fetchUserBookingsInit());
+
+        axiosInstance.get('/bookings/manage')
+        .then(res => res.data )
+        .then(userBookings => dispatch(fetchUserBookingsSuccess(userBookings)))
+        .catch(({response}) => dispatch(fetchUserBookingsFail(response.data.errors)))
+
+    }
+}
+
+// USER ARCADES ACTIONS -------------------------------------
+
+export const getUserArcades = () => {
+    return axiosInstance.get('/arcades/manage').then(
+        res => res.data,
+        err => Promise.reject(err.response.data.errors)
+    )
+}
+
+export const deleteArcade = (arcadeId) => {
+    return axiosInstance.delete(`/arcades/${arcadeId}`).then(
+        res => res.data,
+        err => Promise.reject(err.response.data.errors))
 }
 
 // AUTH ACTIONS -------------------------- akcje typu tworzenie salonu

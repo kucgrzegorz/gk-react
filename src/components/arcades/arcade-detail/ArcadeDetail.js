@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ArcadeDetailInfo } from './ArcadeDetailInfo';
 import { ArcadeMap } from './ArcadeMap';
-import { Booking } from 'components/booking/Booking';
+import Booking from 'components/booking/Booking';
 
 import * as actions from 'actions'
 
