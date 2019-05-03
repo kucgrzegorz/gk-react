@@ -21,7 +21,7 @@ import * as actions from 'actions';
 
 		return (
 				<section id='userBookings'>
-				  <h1 className='page-title'>My Bookings</h1>
+				  <h1 className='page-title'>Moje rezerwacje</h1>
 				  <div className='row'>
 					  { this.renderBookings(bookings) }
 				  </div>

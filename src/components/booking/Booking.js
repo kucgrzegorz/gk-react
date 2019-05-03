@@ -136,7 +136,7 @@ class Booking extends React.Component {
     return (
       <div className='booking'>
       <ToastContainer />
-        <h3 className='booking-price'>$ {arcade.dailyRate} <span className='booking-per-night'>per night</span></h3>
+        <h3 className='booking-price'> {arcade.dailyRate} zł <span className='booking-per-night'>za dzień</span></h3>
         <hr></hr>
         { !isAuth && 
           <Link className='btn btn-bwm btn-confirm btn-block' to={{pathname: '/login'}}> 
@@ -146,7 +146,7 @@ class Booking extends React.Component {
         { isAuth &&
           <React.Fragment>
               <div className='form-group'>
-              <label htmlFor='dates'>Dates</label>
+              <label htmlFor='dates'>Data</label>
               <DateRangePicker onApply={this.handleApply} 
                         isInvalidDate={this.checkInvalidDates} 
                         opens='left' containerStyles={{display: 'block'}}>
@@ -154,7 +154,7 @@ class Booking extends React.Component {
               </DateRangePicker>
               </div>
               <div className='form-group'>
-                <label htmlFor='guests'>Guests</label>
+                <label htmlFor='guests'>Liczba gości</label>
                 <input onChange={(event) => ( this.selectGuests(event))} 
                        type='number' 
                        value={guests}
@@ -164,13 +164,13 @@ class Booking extends React.Component {
                        placeholder=''>
                  </input>
               </div>
-              <button disabled={!startAt || !endAt || !guests} onClick={() => this.confirmProposedData()} className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
+              <button disabled={!startAt || !endAt || !guests} onClick={() => this.confirmProposedData()} className='btn btn-bwm btn-confirm btn-block'>Zarezerwuj wizytę</button>
             </React.Fragment>
           }
         <hr></hr>
-        <p className='booking-note-title'>People are interested into this house</p>
+        <p className='booking-note-title'>Złóż rezerwację w tym miejscu!</p>
         <p className='booking-note-text'>
-          More than 500 people checked this rental in last month.
+          Przeżyj niesamowitą przygodę ze swoją grupą w świecie VR!
         </p>
         <BookingModal open={this.state.modal.open} 
                       closeModal={this.cancelConfirmation}

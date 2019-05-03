@@ -18,12 +18,12 @@ class Header extends React.Component {
 
   renderAuthButtons(isAuth) {
     if (isAuth) {
-      return <a className='nav-item nav-link clickable' onClick={this.handleLogout}>Logout</a>
+      return <a className='nav-item nav-link clickable' onClick={this.handleLogout}>Wyloguj</a>
     }
 
     return (
         <React.Fragment>
-            <Link className='nav-item nav-link active' to='/login'>Logowanie <span className='sr-only'>(current)</span></Link>
+            <Link className='nav-item nav-link' to='/login'>Logowanie <span className='sr-only'>(current)</span></Link>
             <Link className='nav-item nav-link' to='/register'>Rejestracja</Link>
         </React.Fragment>
       )
@@ -34,12 +34,12 @@ class Header extends React.Component {
       return (
        <div className="nav-item dropdown">
           <a className="nav-link nav-item dropdown-toggle clickable" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Owner Section
+            Panel
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <Link className="dropdown-item" to="/arcades/new">Create Rental</Link>
-            <Link className="dropdown-item" to="/arcades/manage">Manage Rentals</Link>
-            <Link className="dropdown-item" to="/bookings/manage">Manage Bookings</Link>
+            <Link className="dropdown-item" to="/arcades/new">Dodaj salon</Link>
+            <Link className="dropdown-item" to="/arcades/manage">Zarządzaj salonami</Link>
+            <Link className="dropdown-item" to="/bookings/manage">Zarządzaj rezerwacjami</Link>
           </div>
         </div>
       )

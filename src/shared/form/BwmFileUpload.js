@@ -11,7 +11,7 @@ export class BwmFileUpload extends React.Component {
 	onChange(event) {
 		const {input: {onChange}} = this.props;
 
-		onChange('https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/13/image.jpeg');
+		onChange('https://s3-media3.fl.yelpcdn.com/bphoto/DirY8xgYIR1oZvCi1Kqa_w/o.jpg');
 	}
 
 	render() {

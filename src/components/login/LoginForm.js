@@ -25,7 +25,7 @@ const LoginForm = props => {
             validate={[required]}
           />
         <button className='btn btn-bwm btn-form' type="submit" disabled={!valid || pristine || submitting}>
-          Login
+          Zaloguj
         </button>
         <BwmResError errors={errors} />
     </form>

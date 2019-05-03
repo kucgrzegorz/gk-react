@@ -14,7 +14,7 @@ export function ArcadeCard(props) {
         <div className='card-block'>
           <h6 className={`card-subtitle ${arcade.category}`}>{arcadeType(arcade.shared)} {arcade.category} &#183; {arcade.city}</h6>
           <h4 className='card-title'>{arcade.title}</h4>
-          <p className='card-text'>${arcade.dailyRate} / wizyta &#183; Darmowa rezygnacja</p>
+          <p className='card-text'>{arcade.dailyRate} zł / wizytę &#183; Darmowa rezygnacja</p>
           </div>
         </div>
      </Link>

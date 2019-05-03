@@ -10,7 +10,7 @@ const RegisterForm = props => {
           <Field
             name="username"
             type="text"
-            label='Username'
+            label='Użytkownik'
             className='form-control'
             component={BwmInput}
           />
@@ -24,14 +24,14 @@ const RegisterForm = props => {
           <Field
             name="password"
             type="password"
-            label='Password'
+            label='Hasło'
             className='form-control'
             component={BwmInput}
           />
           <Field
             name="passwordConfirmation"
             type="password"
-            label='Password Confirmation'
+            label='Potwierdzenie hasła'
             className='form-control'
             component={BwmInput}
           />
