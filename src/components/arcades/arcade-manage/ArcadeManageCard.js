@@ -47,13 +47,13 @@ const deleteClass = wantDelete ? 'toBeDeleted' : '';
 	          { arcade.bookings && arcade.bookings.length > 0 && modal }
 	       	 </div>
 	        <div className='card-footer text-muted'>
-	          Created at {pretifyDate(arcade.createdAt)}
+	          Stworzone {pretifyDate(arcade.createdAt)}
 	          { !wantDelete &&
 	          <button onClick={() => { this.showDeleteMenu() }} className='btn btn-danger'> Usuń </button>
 	      		}
 	      		{ wantDelete &&
 	      			<div className='delete-menu'>
-	      			Are you sure?
+	      			Jesteś pewien?
 	      			<button onClick={() => {this.deleteArcade(arcade._id, arcadeIndex)}} className='btn btn-danger'> Tak </button>
 					<button onClick={() => { this.closeDeleteMenu() }} className='btn btn-success'> Nie </button>
 	      			</div>

@@ -1,7 +1,7 @@
 import titleize from 'titleize';
 import * as moment from 'moment';
 
-export const arcadeType = isShared => isShared ? 'shared' : 'entire'
+export const arcadeType = isShared => isShared ? 'Na cały dzien:' : 'Na godziny:'
 
 export const toUpperCase = value => value ? titleize(value) : ''
 

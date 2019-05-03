@@ -44,7 +44,7 @@ export class ArcadeCreate extends React.Component {
 			      </div>
 			      <div className='col-md-6 ml-auto'>
 			        <div className='image-container'>
-			          <h2 className='catchphrase'>Hundreds of awesome places in reach of few clicks.</h2>
+			          <h2 className='catchphrase'>Salony VR z całego świata na wyciągnięcie reki.</h2>
 			          <img src={process.env.PUBLIC_URL + '/img/create-arcade.jpg'} alt=''/>
 			        </div>
 			      </div>

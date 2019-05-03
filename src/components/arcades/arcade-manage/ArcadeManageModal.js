@@ -43,16 +43,16 @@ export class ArcadeManageModal extends React.Component {
 
 		return(
 				<React.Fragment>
-				  <button type='button' onClick={this.openModal} className='btn btn-bwm'>Bookings</button>
+				  <button type='button' onClick={this.openModal} className='btn btn-bwm'>Rezerwacje</button>
 				  <Modal open={this.state.open} onClose={this.closeModal} little classNames={{ modal: 'arcade-booking-modal' }}>
-				     <h4 className='modal-title title'>Made Bookings</h4>
+				     <h4 className='modal-title title'>Stworzone rezerwacje</h4>
 				     <div className='modal-body bookings-inner-container'>
 
 				      {this.renderBookings(bookings)}
 
 				    </div>
 				    <div className='modal-footer'>
-				      <button type='button' onClick={this.closeModal} className='btn btn-bwm'>Cancel</button>
+				      <button type='button' onClick={this.closeModal} className='btn btn-bwm'>Zamknij</button>
 				    </div>
 				  </Modal>
 				</React.Fragment>

@@ -4,17 +4,17 @@ export function ArcadeAssets() {
 
 	return (
 		 <div className='arcade-assets'>
-            <h3 className='title'>Assets</h3>
+            <h3 className='title'>Informacje dodatkowe</h3>
             <div className='row'>
               <div className='col-md-6'>
-                <span><i className='fa fa-asterisk'></i> Cooling</span>
-                <span><i className='fa fa-thermometer'></i> Heating</span>
-                <span><i className='fa fa-location-arrow'></i> Iron</span>
+                <span><i className='fa fa-smile-o'></i> Przyjazna atmosfera</span>
+                <span><i className='fa fa-gamepad'></i> Najnowsze aplikacje</span>
+                <span><i className='fa fa-users'></i> Profesjonalna obsługa</span>
               </div>
               <div className='col-md-6'>
-                <span><i className='fa fa-desktop'></i> Working area</span>
-                <span><i className='fa fa-cube'></i> Washing machine</span>
-                <span><i className='fa fa-cube'></i> Dishwasher</span>
+                <span><i className='fa fa-desktop'></i> Komputery </span>
+                <span><i className="fa fa-cubes"></i> Sprzęt VR</span>
+                <span><i className='fa fa-cube'></i> Symulatory</span>
               </div>
             </div>
           </div>
